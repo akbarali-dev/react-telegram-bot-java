@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.akbarali.foodbotwithreact.payload.ApiResponse;
 import uz.akbarali.foodbotwithreact.repository.ProductRepository;
 import uz.akbarali.foodbotwithreact.service.ProductService;
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductController {
