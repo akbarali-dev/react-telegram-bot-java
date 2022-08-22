@@ -7,6 +7,7 @@ import uz.akbarali.foodbotwithreact.projection.ProductProjection;
 import uz.akbarali.foodbotwithreact.repository.base.BaseRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ProductRepository extends BaseRepository<Product> {
 //    @Query(nativeQuery = true,
@@ -18,7 +19,7 @@ public interface ProductRepository extends BaseRepository<Product> {
 //    List<ProductProjection> getAllProduct();
 
 
-    @Override
+
     @Query(nativeQuery = true,
             value = "select cast(p.id as varchar) as id,\n" +
                     "       name_uz               as name,\n" +
@@ -26,6 +27,7 @@ public interface ProductRepository extends BaseRepository<Product> {
                     "       ac.data as image\n" +
                     "from product p\n" +
                     "         join attachments a on a.id = p.attachment_id\n" +
-                    "         join attachment_contents ac on a.id = ac.attachment_id")
-    List<ProductProjection> getAll();
+                    "         join attachment_contents ac on a.id = ac.attachment_id\n" +
+                    "where p.category_id = :categoryId")
+    List<ProductProjection> getAllFood(UUID categoryId);
 }

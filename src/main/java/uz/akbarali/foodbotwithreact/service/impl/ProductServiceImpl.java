@@ -8,6 +8,7 @@ import org.springframework.validation.Errors;
 import uz.akbarali.foodbotwithreact.dto.ProductDto;
 import uz.akbarali.foodbotwithreact.payload.ApiResponse;
 import uz.akbarali.foodbotwithreact.projection.ProductProjection;
+import uz.akbarali.foodbotwithreact.repository.CategoryRepository;
 import uz.akbarali.foodbotwithreact.repository.ProductRepository;
 import uz.akbarali.foodbotwithreact.service.AnswerService;
 import uz.akbarali.foodbotwithreact.service.ProductService;
@@ -19,13 +20,16 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
-        @Autowired
-        AnswerService answerService;
+    @Autowired
+    AnswerService answerService;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Override
     public HttpEntity<ApiResponse> getAllProduct() {
-        return answerService.answer("SUCCESS", true, productRepository.getAll(), HttpStatus.OK);
-//        return answerService.getAllObject(productRepository);
+//        return answerService.answer("SUCCESS", true, productRepository.getAll(), HttpStatus.OK);
+        return answerService.getAllObject(categoryRepository);
     }
 
     @Override
